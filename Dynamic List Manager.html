@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"></metaewport>
+  <title>Dynamic List Manager</title>
+  <style>
+    /* Styling the container and title */
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color:rgba(142, 168, 131, 0.479)
+    }
+
+    .app {
+      text-align: center;
+      padding: 20px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 300px;
+    }
+
+    h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: #306d2e;
+    }
+    /* Input form and button styling in one line */
+    .input-form {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+      
+    .input-form button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+      border-color: #7cd1a6;
+      background-color: #4caf50;
+    }
+
+    .input-form button:hover {
+      background-color: #45a049;
+    }
+
+    /* List container and item styling */
+    .list-container {
+      padding: 10px;
+      border: 1px solid #ccc;
+      background-color: #7cd1a6;
+      border-radius: 5px;
+      margin-top: 20px;
+      text-align: left;
+    }
+
+    .list-container ul {
+      padding: 0;
+      list-style-type: circle;
+      list-style-position: inside;
+    }
+    
+  </style>
+</head>
+<body>
+
+  <div class="app">
+    <h1>Dynamic List Manager</h1>
+    
+    <!-- Input form for adding items -->
+    <div class="input-form">
+      <input type="text" id="itemInput" placeholder="Enter an item">
+      <button onclick="addItem()">Add Item</button>
+    </div>
+
+    <!-- List container where the items will be displayed -->
+    <div class="list-container">
+      <ul id="itemList"></ul>
+    </div>
+  </div>
+
+  <script>
+    // Function to add an item to the list
+    function addItem() {
+      const inputField = document.getElementById('itemInput');
+      const itemText = inputField.value.trim();  // Get the input value
+
+      if (itemText !== "") {
+        // Create a new list item
+        const listItem = document.createElement('li');
+        listItem.textContent = itemText;
+        
+        // Append the new item to the list
+        const itemList = document.getElementById('itemList');
+        itemList.appendChild(listItem);
+        
+        // Clear the input field after adding the item
+        inputField.value = "";
+      } else {
+        alert("Please enter a valid item.");
+      }
+    }
+  </script>
+
+</body>
+</html>
