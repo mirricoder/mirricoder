@@ -1,29 +1,24 @@
-// Password validation function
 function password(str) {
-    const hasUppercase = /[A-Z]/.test(str);
-    const hasLowercase = /[a-z]/.test(str);
+    // Check for minimum length of 8
+    if (str.length < 8) return "Invalid password";
+
+    // Regular expressions to check each requirement
+    const hasUpperCase = /[A-Z]/.test(str);
+    const hasLowerCase = /[a-z]/.test(str);
     const hasNumber = /[0-9]/.test(str);
-    const isLongEnough = str.length >= 8;
 
-    return hasUppercase && hasLowercase && hasNumber && isLongEnough;
+    // Return message based on validation
+    if (hasUpperCase && hasLowerCase && hasNumber ) {
+        return "Valid password";
+    } else {
+        return "Invalid password";
+    }
 }
+console.log(password("Abcd1234")); 
+console.log(password("Abcd123"));  
+console.log(password("abcd1234")); 
+console.log(password("ABCD1234")); 
+console.log(password("AbcdefGhijKlmnopQRsTuvwxyZ1234567890")); 
+console.log(password("Ab1!@#$%^&*()-_+={}[]|\\:;?/>.<,")); 
+console.log(password("!@#$%^&*()-_+={}[]|\\:;?/>.<,")); 
 
-// Test cases
-const testPasswords = [
-    { input: "Abcd1234", expected: true },
-    { input: "Abcd123", expected: false },
-    { input: "abcd1234", expected: false },
-    { input: "ABCD1234", expected: false },
-    { input: "AbcdefGhijKlmnopQRsTuvwxyZ1234567890", expected: true },
-    { input: "Ab1!@#$%^&*()-_+={}[]|\\:;?/>.<,", expected: true },
-    { input: "!@#$%^&*()-_+={}[]|\\:;?/>.<,", expected: false }
-];
-
-// Run tests
-console.log("Password Validation Test Results:\n");
-
-testPasswords.forEach(({ input, expected }, index) => {
-    const result = password(input);
-    const passFail = result === expected ? "✅ PASS" : "❌ FAIL";
-    console.log(`${index + 1}. Input: "${input}" → Result: ${result} → Expected: ${expected} → ${passFail}`);
-});
